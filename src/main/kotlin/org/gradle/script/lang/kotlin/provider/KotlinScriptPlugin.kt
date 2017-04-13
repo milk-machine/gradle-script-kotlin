@@ -39,6 +39,10 @@ class KotlinScriptPlugin(
         if (target !is Project) {
             throw IllegalArgumentException("target $target was not a Project as expected")
         }
+        with(target) {
+            if (!plugins.hasPlugin(KotlinScriptBasePlugin::class.java))
+                plugins.apply(KotlinScriptBasePlugin::class.java)
+        }
         script(target)
     }
 }
