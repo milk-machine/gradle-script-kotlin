@@ -1,5 +1,7 @@
 def configureGradleScriptKotlinOn(ProjectDescriptor project) {
-    project.buildFileName = 'build.gradle.kts'
+    if (new File(project.projectDir, 'build.gradle.kts').exists()) {
+        project.buildFileName = 'build.gradle.kts'
+    }
     project.children.each { configureGradleScriptKotlinOn(it) }
 }
 
